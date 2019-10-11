@@ -10,8 +10,7 @@ parametroDelay = 3000000
 
 tamanhoMensagem = 16*parametroDelay
 
-for i in range (0,tamanhoMensagem):
-    mensagem = mensagem + "0"
+mensagem = "0"*tamanhoMensagem
 
 obj = AES.new(chave, AES.MODE_OFB, iv)
 ciphertext = obj.encrypt (mensagem)

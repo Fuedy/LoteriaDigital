@@ -52,10 +52,9 @@ chave = hashTicket.digest()
 ciphertext = chave
 
 print "Delay Function..."
-tamanhoMensagem = 16*parametroDelay
+tamanhoMensagem = 16 * parametroDelay
 
-for i in range (0,tamanhoMensagem):
-    plainTextDelay = plainTextDelay + "0"
+plainTextDelay = "0" * tamanhoMensagem
 
 obj = AES.new(chave, AES.MODE_OFB, iv)
 ciphertext = obj.encrypt (plainTextDelay)
@@ -68,8 +67,7 @@ ciphertext = str(bin(int(binascii.hexlify(ciphertext),16)))
 ciphertext = ciphertext[2:]
 faltaCipher = 256 - len(ciphertext)
 if faltaCipher != 0:
-    for i in range(0,faltaCipher):
-        ciphertext = "0" + ciphertext
+    ciphertext = ("0" * faltaCipher) + ciphertext
 print ciphertext
 
 menorDistancia = 257
@@ -81,8 +79,7 @@ for i in range (0,nroTickets):
     winningParameter = winningParameter[2:]
     faltaCipher = 256 - len(winningParameter)
     if faltaCipher != 0:
-        for i in range(0,faltaCipher):
-            winningParameter = "0" + winningParameter
+        winningParameter = ("0" * faltaCipher) + winningParameter
     distancia = hamming2(ciphertext, winningParameter)
     if distancia == menorDistancia:
         arrayVencedor.append("achei")
